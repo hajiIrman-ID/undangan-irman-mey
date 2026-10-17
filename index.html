@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Irman & Mey Wedding</title>
+
+  <!-- Bootstrap CSS 5.3 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
+  <!-- Google Fonts (Sacramento & Work Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Work+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --pink: #f14e95;
+      --bg: #0a0a0a;
+      --shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-size: 1.2rem;
+      font-family: 'Work Sans', sans-serif;
+      background-color: var(--bg);
+      color: white;
+      padding-bottom: 70px;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('bg.jpg');
+      background-size: cover;
+      background-position: center;
+      filter: grayscale(100%);
+      z-index: -1;
+    }
+
+    .hero h1 {
+      font-family: 'Sacramento', cursive;
+      font-size: 6rem;
+      text-shadow: var(--shadow);
+      color: white;
+    }
+
+    .hero h4 {
+      font-size: 1.6rem;
+      text-shadow: var(--shadow);
+      color: white;
+    }
+
+    .hero p {
+      font-size: 1.4rem;
+      text-shadow: var(--shadow);
+      color: white;
+    }
+
+    .hero a {
+      color: var(--pink);
+      background-color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .hero a:hover {
+      background-color: var(--pink);
+      color: white;
+    }
+
+    /* COUNTDOWN */
+    .countdown-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin: 20px auto;
+    }
+
+    .countdown-box {
+      background: var(--pink);
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-shadow: var(--shadow);
+      color: white;
+    }
+
+    .countdown-number {
+      font-size: 1.4rem;
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    .countdown-label {
+      font-size: 0.75rem;
+      margin-top: 2px;
+    }
+
+    /* SECTION COMMON STYLES */
+    .home, .info, .story, .gallery, .rsvp, .gift {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
+
+    .home, .story, .gift { background-color: #111111; }
+    .info, .gallery, .rsvp { background-color: #0a0a0a; }
+
+    .home h2, .info h2, .story h2, .gallery h2, .rsvp h2, .gift h2 {
+      color: var(--pink);
+      font-family: 'Sacramento', cursive;
+      font-size: 4.5rem;
+      font-weight: bold;
+    }
+
+    .home h3 {
+      color: #ccc;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .home p, .info p, .story p, .gallery p, .rsvp p, .gift p {
+      color: #aaa;
+      font-size: 1.1rem;
+    }
+
+    .home .couple {
+      margin-top: 100px;
+    }
+
+    .home .couple h3 {
+      font-family: 'Sacramento', cursive;
+      font-size: 3rem;
+      color: var(--pink);
+    }
+
+    .home .couple img {
+      width: 100%;
+      max-width: 200px;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    /* INFO CARD */
+    .info .card {
+      background-color: rgba(255, 255, 255, 0.05);
+      color: white !important;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .info .card-header {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* TIMELINE STORY STYLE */
+    .timeline {
+      list-style: none;
+      padding: 1.4rem 0;
+      position: relative;
+    }
+
+    .timeline::before {
+      top: 0;
+      bottom: 0;
+      position: absolute;
+      content: "";
+      width: 2px;
+      background-color: var(--pink);
+      left: 50%;
+      margin-left: -1px;
+    }
+
+    .timeline > li {
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .timeline > li::before,
+    .timeline > li::after {
+      content: "";
+      display: table;
+    }
+
+    .timeline > li::after {
+      clear: both;
+    }
+
+    .timeline > li .timeline-image {
+      width: 100px;
+      height: 100px;
+      background-color: #ccc;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+      border: 3px solid var(--pink);
+      z-index: 2;
+    }
+
+    .timeline > li .timeline-panel {
+      width: 40%;
+      float: left;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 1.5rem;
+      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.05);
+      position: relative;
+    }
+
+    .timeline > li.timeline-inverted .timeline-panel {
+      float: right;
+    }
+
+    .timeline-heading h3 {
+      font-size: 1.3rem;
+      color: var(--pink);
+    }
+
+    /* GALLERY STYLING */
+    .gallery img {
+      border-radius: 8px;
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.03);
+    }
+
+    /* RSVP & GIFT STYLING */
+    .rsvp form label, .gift .list-group-item {
+      color: #ddd;
+    }
+
+    .rsvp .form-control, .rsvp .form-select {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+
+    .btn-pink {
+      background-color: var(--pink);
+      color: white;
+      border: none;
+    }
+
+    .gift .list-group-item {
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* TOMBOL MUSIK MELAYANG */
+    .audio-icon-wrapper {
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
+      position: fixed;
+      bottom: 85px;
+      right: 20px;
+      cursor: pointer;
+      color: white;
+      background-color: var(--pink);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      line-height: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+      animation: rotating 4s linear infinite;
+    }
+
+    @keyframes rotating {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* BOTTOM NAVBAR */
+    .mynavbar {
+      background-color: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(8px);
+    }
+
+    .mynavbar .nav-link {
+      color: #aaa;
+      font-size: 0.75rem;
+      padding: 5px 4px;
+    }
+
+    .mynavbar .nav-link i {
+      font-size: 1.1rem;
+      display: block;
+    }
+
+    .mynavbar .nav-link:hover {
+      color: var(--pink);
+    }
+
+    /* RESPONSIVE DESIGN FOR MOBILE */
+    @media (max-width: 768px) {
+      html {
+        font-size: 62.5%;
+      }
+      .timeline::before {
+        left: 55px;
+      }
+      .timeline > li .timeline-image {
+        left: 15px;
+        transform: none;
+        width: 80px;
+        height: 80px;
+      }
+      .timeline > li .timeline-panel {
+        width: calc(100% - 115px);
+        float: right !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO SECTION -->
+  <section id="hero" class="hero w-100 h-100 p-3 mx-auto text-center d-flex justify-content-center align-items-center">
+    <main>
+      <h4>Kepada <span>Bapak/Ibu/Saudara/i,</span></h4>
+      <h1>Irman & Mey</h1>
+      <p>Akan melangsungkan resepsi pernikahan dalam:</p>
+
+      <!-- HITUNG MUNDUR -->
+      <div class="countdown-container">
+        <div class="countdown-box">
+          <span class="countdown-number" id="days">0</span>
+          <span class="countdown-label">Hari</span>
+        </div>
+        <div class="countdown-box">
+          <span class="countdown-number" id="hours">0</span>
+          <span class="countdown-label">Jam</span>
+        </div>
+        <div class="countdown-box">
+          <span class="countdown-number" id="minutes">0</span>
+          <span class="countdown-label">Menit</span>
+        </div>
+        <div class="countdown-box">
+          <span class="countdown-number" id="seconds">0</span>
+          <span class="countdown-label">Detik</span>
+        </div>
+      </div>
+
+      <a href="#home" class="btn btn-lg mt-4" onclick="playAudio()">Lihat Undangan</a>
+    </main>
+  </section>
+
+  <!-- HOME SECTION -->
+  <section id="home" class="home">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+          <h2>Acara Pernikahan</h2>
+          <h3>Diselenggarakan pada 30 Oktober 2026 di Bandung, Jawa Barat.</h3>
+          <p>Oleh karena itu, dengan segala hormat, kami bermaksud untuk mengundang Bapak/Ibu, Saudara/i, untuk hadir pada acara pernikahan kami.</p>
+        </div>
+      </div>
+
+      <div class="row couple">
+        <!-- Mempelai Pria -->
+        <div class="col-lg-6">
+          <div class="row text-center text-lg-start align-items-center mb-4">
+            <div class="col-sm-4 text-center">
+              <img src="pria.jpg" alt="Irman" class="img-responsive rounded-circle" onerror="this.src='https://picsum.photos/200/200?random=1'">
+            </div>
+            <div class="col-sm-8">
+              <h3>Irman</h3>
+              <p>Putra dari Pasangan<br>Bpk. Muslim <br>dan<br> Ibu Syamsiah</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mempelai Wanita -->
+        <div class="col-lg-6">
+          <div class="row text-center text-lg-end align-items-center mb-4">
+            <div class="col-sm-8">
+              <h3>Mey Meli Arini</h3>
+              <p>Putri dari Pasangan<br>Bpk. Usep Kurniawan <br>dan<br> Ibu Kurnia Crossmawati</p>
+            </div>
+            <div class="col-sm-4 text-center">
+              <img src="wanita.jpg" alt="Mey Meli Arini" class="img-responsive rounded-circle" onerror="this.src='https://picsum.photos/200/200?random=2'">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO SECTION -->
+  <section id="info" class="info">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-10 text-center">
+          <h2>Informasi Acara</h2>
+          <p class="alamat">Alamat: Gang Adikacih 2, Jalan Sitimunigar, Nyengseret, Astana Anyar, Kota Bandung</p>
+
+          <a href="https://maps.google.com" target="_blank" class="btn btn-light btn-sm my-3">
+            <i class="bi bi-geo-alt-fill text-danger me-1"></i> Klik untuk membuka peta
+          </a>
+        </div>
+      </div>
+
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-5 col-10 mb-4">
+          <div class="card text-center text-bg-dark h-100">
+            <div class="card-header">Akad & Resepsi Pernikahan</div>
+            <div class="card-body">
+              <div class="row justify-content-center">
+                <div class="col-md-6">
+                  <i class="bi bi-clock d-block text-warning mb-2" style="font-size: 1.5rem;"></i>
+                  <span>08.00 - 17.00 WIB</span>
+                </div>
+                <div class="col-md-6">
+                  <i class="bi bi-calendar-heart d-block text-danger mb-2" style="font-size: 1.5rem;"></i>
+                  <span>Kamis, 30 Oktober 2026</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY SECTION -->
+  <section id="story" class="story">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-10 text-center">
+          <h2>Cerita Kami</h2>
+          <p>Bagaimana cinta kami bersemi hingga melangkah ke jenjang pernikahan.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <ul class="timeline">
+            <li>
+              <div class="timeline-image" style="background-image: url('gallery1.jpg'), url('https://picsum.photos/300/300?random=3');"></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h3>Pertama Pertemuan</h3>
+                  <span>1 Juni 2021</span>
+                </div>
+                <div class="timeline-body">
+                  <p>Awal pertama kali kami bertemu dan saling mengenal satu sama lain.</p>
+                </div>
+              </div>
+            </li>
+            <li class="timeline-inverted">
+              <div class="timeline-image" style="background-image: url('gallery2.jpg'), url('https://picsum.photos/300/300?random=4');"></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h3>Serius Menjalin Hubungan</h3>
+                  <span>15 Januari 2023</span>
+                </div>
+                <div class="timeline-body">
+                  <p>Memutuskan untuk melangkah lebih serius dan saling berkomitmen.</p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="timeline-image" style="background-image: url('gallery3.jpg'), url('https://picsum.photos/300/300?random=5');"></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h3>Lamaran</h3>
+                  <span>10 Mei 2025</span>
+                </div>
+                <div class="timeline-body">
+                  <p>Momen bahagia saat keluarga besar berkumpul dan mengikat janji suci.</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY SECTION -->
+  <section id="gallery" class="gallery">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-10 text-center">
+          <h2>Galeri Foto</h2>
+          <p>Kenangan indah perjalanan kami bersama.</p>
+        </div>
+      </div>
+
+      <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 justify-content-center g-3">
+        <div class="col"><img src="gallery1.jpg" alt="Galeri 1" class="img-fluid w-100" onerror="this.src='https://picsum.photos/400/400?random=10'"></div>
+        <div class="col"><img src="gallery2.jpg" alt="Galeri 2" class="img-fluid w-100" onerror="this.src='https://picsum.photos/400/400?random=11'"></div>
+        <div class="col"><img src="gallery3.jpg" alt="Galeri 3" class="img-fluid w-100" onerror="this.src='https://picsum.photos/400/400?random=12'"></div>
+        <div class="col"><img src="gallery4.jpg" alt="Galeri 4" class="img-fluid w-100" onerror="this.src='https://picsum.photos/400/400?random=13'"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP SECTION (TERHUBUNG KE WHATSAPP) -->
+  <section id="rsvp" class="rsvp">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-10 text-center">
+          <h2>Konfirmasi Kehadiran</h2>
+          <p>Isi form di bawah ini untuk mengonfirmasi kehadiran Anda.</p>
+        </div>
+      </div>
+
+      <form class="row row-cols-md-auto g-3 align-items-center justify-content-center" onsubmit="sendToWhatsApp(event)">
+        <div class="col-12">
+          <label class="form-label" for="nama">Nama</label>
+          <input type="text" class="form-control" id="nama" placeholder="Nama Anda" required>
+        </div>
+        <div class="col-12">
+          <label class="form-label" for="jumlah">Jumlah Tamu</label>
+          <input type="number" class="form-control" id="jumlah" min="1" max="5" value="1">
+        </div>
+        <div class="col-12">
+          <label class="form-label" for="status">Konfirmasi</label>
+          <select id="status" class="form-select">
+            <option value="Hadir">Hadir</option>
+            <option value="Tidak Hadir">Tidak Hadir</option>
+          </select>
+        </div>
+        <div class="col-12 mt-4">
+          <button type="submit" class="btn btn-pink px-4">Kirim</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- GIFT SECTION -->
+  <section id="gift" class="gift">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-10 text-center">
+          <h2>Kirim Hadiah</h2>
+          <p>Ungkapan tanda kasih Anda dapat disalurkan melalui nomor rekening di bawah ini:</p>
+        </div>
+      </div>
+
+      <div class="row justify-content-center text-center">
+        <div class="col-md-6">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <div class="fw-bold">BCA</div>
+              1234567890 - IRMAN
+            </li>
+            <li class="list-group-item">
+              <div class="fw-bold">MANDIRI</div>
+              0987654321 - MEY MELI ARINI
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOMBOL AUDIO MELAYANG -->
+  <div class="audio-icon-wrapper" id="audioContainer" onclick="toggleAudio()" style="display: none;">
+    <i class="bi bi-disc" id="audioIcon"></i>
+  </div>
+
+  <!-- ELEMENT AUDIO MUSIK -->
+  <audio id="song" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- BOTTOM NAVBAR -->
+  <nav class="navbar mynavbar fixed-bottom navbar-expand text-center">
+    <div class="container justify-content-center">
+      <ul class="navbar-nav d-flex flex-row justify-content-around w-100">
+        <li class="nav-item"><a class="nav-link text-center" href="#hero"><i class="bi bi-house-door"></i><span>Home</span></a></li>
+        <li class="nav-item"><a class="nav-link text-center" href="#home"><i class="bi bi-heart"></i><span>Mempelai</span></a></li>
+        <li class="nav-item"><a class="nav-link text-center" href="#info"><i class="bi bi-calendar-event"></i><span>Acara</span></a></li>
+        <li class="nav-item"><a class="nav-link text-center" href="#story"><i class="bi bi-film"></i><span>Story</span></a></li>
+        <li class="nav-item"><a class="nav-link text-center" href="#gallery"><i class="bi bi-images"></i><span>Galeri</span></a></li>
+        <li class="nav-item"><a class="nav-link text-center" href="#rsvp"><i class="bi bi-envelope-check"></i><span>RSVP</span></a></li>
+        <li class="nav-item"><a class="nav-link text-center" href="#gift"><i class="bi bi-gift"><span>Gift</span></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- SCRIPT -->
+  <script>
+    // Countdown
+    const targetDate = new Date('October 30, 2026 08:00:00').getTime();
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+      if (difference > 0) {
+        document.getElementById('days').innerText = Math.floor(difference / (1000 * 60 * 60 * 24));
+        document.getElementById('hours').innerText = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        document.getElementById('minutes').innerText = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        document.getElementById('seconds').innerText = Math.floor((difference % (1000 * 60)) / 1000);
+      }
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Fungsi Kirim ke WhatsApp
+    function sendToWhatsApp(event) {
+      event.preventDefault();
+      
+      const nama = document.getElementById('nama').value;
+      const jumlah = document.getElementById('jumlah').value;
+      const status = document.getElementById('status').value;
+
+      // ⚠️ PENTING: Ganti nomor di bawah dengan nomor WhatsApp kamu (awali dengan 62 tanpa angka 0 di depan)
+      // Contoh: 6281234567890
+      const phoneNumber = "6285122786522"; 
+
+      const message = `Halo, saya mengirimkan konfirmasi kehadiran untuk pernikahan Irman & Mey:%0A%0A*Nama:* ${nama}%0A*Jumlah Tamu:* ${jumlah}%0A*Konfirmasi:* ${status}`;
+      
+      window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+    }
+
+    // Kontrol Musik
+    const song = document.getElementById('song');
+    const audioContainer = document.getElementById('audioContainer');
+    const audioIcon = document.getElementById('audioIcon');
+    let isPlaying = false;
+
+    function playAudio() {
+      audioContainer.style.display = 'flex';
+      song.play();
+      isPlaying = true;
+    }
+
+    function toggleAudio() {
+      if (isPlaying) {
+        song.pause();
+        audioIcon.classList.remove('bi-disc');
+        audioIcon.classList.add('bi-pause-circle');
+        audioContainer.style.animationPlayState = 'paused';
+      } else {
+        song.play();
+        audioIcon.classList.remove('bi-pause-circle');
+        audioIcon.classList.add('bi-disc');
+        audioContainer.style.animationPlayState = 'running';
+      }
+      isPlaying = !isPlaying;
+    }
+  </script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
